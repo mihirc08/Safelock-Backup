@@ -1,0 +1,346 @@
+﻿<Window Icon="images/Green-Backup-icon.ico" x:Class="Backup_Update.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="485.075" Width="632.09" AllowsTransparency="True" WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries >
+                <ResourceDictionary Source="styls.xaml"/>
+                <ResourceDictionary Source="AzureTabItem.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FF3F4E51" Offset="0.261"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Background="Snow">
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"    Margin="0,26,0,0" Background="Black" FontFamily="Cambria" FontWeight="Bold" FontSize="22" BorderBrush="White" Foreground="White" >
+
+            <TabControl.Resources>
+                <Style TargetType="TabItem" BasedOn="{StaticResource azure}"/>
+            </TabControl.Resources>
+            <TabItem Width="130" Header="Account" Background="#FFFDFFFF" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="White" Margin="-2,-2,0,-16" BorderBrush="#FFEE4F12">
+                <Grid Margin="0,16,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg"/>
+                    </Grid.Background>
+                    <Label x:Name="welcomeLabel" Content="Welcome" HorizontalAlignment="Center" Margin="174,75,40,0" VerticalAlignment="Top" Width="412" Foreground="White" Height="88" RenderTransformOrigin="0.498,0.466" FontSize="36"/>
+                    <Button x:Name="logout_btn" Content="LOGOUT" HorizontalAlignment="Left" Margin="0,368,0,-4" Width="128" Click="logout_Click_3" BorderThickness="0" Background="#FF2A2C2C" OpacityMask="Black" Foreground="#FF00A2FF" Opacity="0.6"/>
+                </Grid>
+            </TabItem>
+            <TabItem  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Header="Backup" Foreground="White" Margin="-2,-2,2,-16" Width="129">
+                <TabItem.Background>
+                    <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg" Stretch="UniformToFill"/>
+                </TabItem.Background>
+                <Grid Margin="0,15,-6,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="61*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="rbFile" Content="File Backup" HorizontalAlignment="Left" Margin="52,57,0,0" VerticalAlignment="Top" GroupName="backupBrowse" Foreground="White" Checked="rbFile_Checked" BorderBrush="#FF111111" RenderTransformOrigin="1.048,0.61" />
+                    <RadioButton x:Name="rbFull" Content="Full Backup" HorizontalAlignment="Left" Margin="52,168,0,0" VerticalAlignment="Top" GroupName="backupBrowse" Foreground="White" Checked="rbFull_Checked" BorderBrush="Black" />
+                    <TextBox x:Name="fileText" HorizontalAlignment="Left" Height="32" Margin="52,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" BorderBrush="Black"/>
+                    <TextBox x:Name="fullText" HorizontalAlignment="Left" Height="32" Margin="52,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" BorderBrush="Black"/>
+                    <Button x:Name="fileBrowse" Content="Browse" HorizontalAlignment="Left" Margin="0,103,0,0" VerticalAlignment="Top" Width="120" Height="32" Click="fileBrowse_Click" Style="{Binding Mode=OneWay, Source={StaticResource MetroButton}}" Background="#EE43BED3" BorderBrush="#FF0C0B0B" Foreground="White" Grid.Column="1"/>
+                    <Button x:Name="fullBrowse" Content="Browse" HorizontalAlignment="Left" Margin="0,216,0,0" VerticalAlignment="Top" Width="120" Click="fullBrowse_Click" Style="{Binding Mode=OneWay, Source={StaticResource MetroButton}}" Height="32" Background="#EE43BED3" BorderBrush="Black" Foreground="White" Grid.Column="1"/>
+                    <Button x:Name="Backup" Content="Backup" HorizontalAlignment="Left" Margin="121,297,0,0" VerticalAlignment="Top" Width="363" Height="50" Click="Backup_Click" Style="{DynamicResource MetroButton}" Background="#EE43BED3" BorderBrush="Black" Foreground="White" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Width="130" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Header="Restore" Foreground="White" Margin="-2,-2,2,-16">
+                <TabItem.Background>
+                    <ImageBrush/>
+                </TabItem.Background>
+                <Grid Margin="0,15,-1,1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg"/>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="406*"/>
+                        <ColumnDefinition Width="33*"/>
+                        <ColumnDefinition Width="188*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="restoreText" HorizontalAlignment="Left" Height="32" Margin="66,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" BorderBrush="Black"/>
+                    <TextBox x:Name="restoreSaveText" HorizontalAlignment="Left" Height="32" Margin="66,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="309" BorderBrush="Black"/>
+                    <Button x:Name="restoreBrowse" Content="Download File" HorizontalAlignment="Left" Margin="148,61,0,0" VerticalAlignment="Top" Width="283" Click="restoreBrowse_Click" Style="{DynamicResource MetroButton}" Height="40" FontSize="22" Foreground="#FFEBF3F5" Background="#EE43BED3" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <Button x:Name="restoreButton" Content="Restore" HorizontalAlignment="Left" Margin="117,303,0,0" VerticalAlignment="Top" Width="363" Height="55" Click="restoreButton_Click" Style="{DynamicResource MetroButton}" FontSize="22" Foreground="#FFEBF3F5" Background="#EE43BED3" BorderBrush="Black" Grid.ColumnSpan="3"/>
+                    <Button x:Name="restore" Content="Browse" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top" Width="107" FontWeight="Bold" FontSize="16" Height="32" Click="restore_Click" Foreground="#FFEBF3F5" Background="#EE43BED3" BorderBrush="Black" Grid.ColumnSpan="2" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Width="132" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Header="MyBackup" Background="#FF3F4040" Foreground="White" Margin="-2,-2,2,-16">
+                <Grid Margin="0,15,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="273*"/>
+                        <ColumnDefinition Width="40*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg"/>
+                    </Grid.Background>
+                    <TreeView x:Name="treeView1" HorizontalAlignment="Left" Height="384" VerticalAlignment="Top" Width="323" Margin="10,10,0,0" BorderThickness="0" BorderBrush="#FF0E0F11" Opacity="0.5" Foreground="White" Background="White" OpacityMask="Black"/>
+                    <Button Content="Load my Files" HorizontalAlignment="Left" Margin="394,86,0,0" VerticalAlignment="Top" Width="163" Height="38" Click="Button_Click_1" Background="#ED43BED3" Grid.ColumnSpan="2" Foreground="White"/>
+                    <Button x:Name="delete" Content="Delete" HorizontalAlignment="Left" Margin="394,191,0,0" VerticalAlignment="Top" Width="163" Height="41" Click="delete_Click_2" Background="#ED43BED3" Grid.ColumnSpan="2" Foreground="White"/>
+                </Grid>
+            </TabItem>
+            <TabItem VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Header="Help" Background="#FF3F4040" Foreground="White" Margin="-2,-2,-38,-16">
+                <Grid Margin="0,15,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="simple_google_wallpapers_by_fypo-d6kb5mo.jpg"/>
+                    </Grid.Background>
+                    <RichTextBox IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Height="380" Margin="10,10,0,0" VerticalAlignment="Top" Width="501">
+                        <FlowDocument>
+                            <Paragraph FontSize="29.3333333333333" FontFamily="Cambria" Margin="0,0,0,13.33" TextAlignment="Center">
+                                <Span Language="en-gb">
+                                    <Run Text="USER/OPERATIONAL MANUAL"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="29.3333333333333" FontFamily="Cambria" Margin="0,0,0,13.33" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="SAFELOCK BACKUP MANAGER is a s/w that helps in managing USER"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="s important data files by backing them up in cloud."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="How to get started?"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="1"/>
+                                </Span>
+                                <Span Language="en-in" Typography.Variants="Superscript">
+                                    <Run Text="st"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text=" the user has to logging into the system. This is done only if the user is not new to the system."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="A user can easily register himself after getting s/w installed and using the same username nad password he/she can login."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="How to backup/ restore/ delete data files (from cloud)?"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="On login the first page the user can see is the user"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="s own account page from where user can logout after done with all his work."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="The next tab is "/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="Backup"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="It gives the user two options, either user can do file backup or an entire folder backup (one at a time)"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="We also give a specific feature of backing up multiple files at a time which is possible with same file backup option."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="In order to choose the file we need to browse through the system files."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="After selection of file/folder/files the user simply needs to click on backup button, which will perform rest of the own its own."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="User don"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="t need to worry about data protection cause during backup (automated  operation)"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="Files/fodders are encrypted as well as for smooth transferring the folders are zipped as well"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="And finally the data is stored in secured locker (server space/partition) of user."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="The next tab is "/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="Restore"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="It helps users to restore their backed up files ."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="The user can see a download file button at top, on click of it user will be directed to his/her site where he/she can see all his/her backed up files."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="On click of specific file will help user to download that file in the system."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="Caution: the downloaded file is not the restored actual file"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="In order to restore the file properly the user now needs to come back to application and select browse button in Restore tab and select the downloaded file and simply press the restore button now the system will ask you where you want to store your actual restored file, on selection of this help user to restore the file in actual format."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="Don"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="t worry with automated work of restoration the temporary downloaded file will also get deleted."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="The next tab is "/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="MyBackup"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="It provides the user two important things"/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="i. The user can easily explore through all his backed up files through system itself."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="ii.The user can  delete any backed up file if he/she doesn"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="'"/>
+                                </Span>
+                                <Span Language="en-in">
+                                    <Run Text="t require that anymore."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="On click of Load my files button, all files of user will be listed on left side, through which user can explore."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="In order to delete any file/folder user needs to select the particular file/folder while exploring ,and click the delete button on left."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="This will delete the file from cloud permanently."/>
+                                </Span>
+                            </Paragraph>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center"/>
+                            <Paragraph FontSize="16" FontFamily="Cambria" Margin="0" TextAlignment="Center">
+                                <Span Language="en-in">
+                                    <Run Text="Finally in order to logout the user must come back to his/her account page and click on logout button"/>
+                                </Span>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid x:Name="titleGrid" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="525">
+            <Rectangle x:Name="titlebar1" Fill="#FF272729" HorizontalAlignment="Left" Height="27" Stroke="#FF0C0B0B" VerticalAlignment="Top" Width="632" MouseDown="titlebar_MouseDown" Margin="0,-2,-105,0" StrokeThickness="0"/>
+            <Button x:Name="close" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34" Margin="598,0,-107,0" BorderThickness="0" Background="#FF2B2929" BorderBrush="#FF2B2929" Padding="0" Height="24" ClipToBounds="True" FontFamily="Cambria" Foreground="#FFA0ABAE" FontWeight="Bold" FontSize="14" Click="close_Click_1" Style="{DynamicResource MetroButton}" RenderTransformOrigin="2.41,0.444"/>
+            <Button x:Name="min" Content="--" HorizontalAlignment="Left" Width="31" Margin="562,0,-68,19" BorderThickness="0" Background="#FF2B2929" BorderBrush="#FF2B2929" Padding="0" FontFamily="Cambria" Foreground="#FFA0ABAE" FontWeight="Bold" FontSize="24" ClipToBounds="True" ClickMode="Hover" Style="{DynamicResource MetroButton}" Height="25" VerticalAlignment="Bottom" MouseDown="min_MouseDown" />
+            <Image HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="25" Source="Green-Backup-icon.ico"/>
+            <Label Content="SafeLock Backup" Margin="30,-3,0,0" RenderTransformOrigin="0.519,0.532" Height="37" Width="207" Foreground="White" FontFamily="Cambria" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
+        <Canvas HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Window>

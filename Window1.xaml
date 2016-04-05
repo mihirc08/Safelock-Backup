@@ -1,0 +1,223 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Icon="images/Green-Backup-icon.ico"
+        x:Class="Backup_Update.Window1"
+        Title="Window1" Height="450" Width="400" WindowStartupLocation="CenterScreen" Opacity="0.95" AllowsTransparency="True" WindowStyle="None" BorderBrush="Black">
+    <Window.Resources>
+        <Style
+        x:Key="ButtonFocusVisual">
+            <Setter
+        		Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MetroButton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="#EEEEEEEE"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border
+        						x:Name="Border"
+        						Background="{TemplateBinding Background}"
+        						BorderBrush="{TemplateBinding BorderBrush}"
+        						BorderThickness="{TemplateBinding BorderThickness}" />
+
+                            <ContentPresenter
+        						HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+        						Margin="{TemplateBinding Padding}"
+        						VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+        						RecognizesAccessKey="True" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="OpacityMask" Value="#AA888888"/>
+                                <Setter Property="Margin" Value="2 1" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <!--<Setter Property="Background" Value="DimGray"/>-->
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+        		x:Name="Bd" BorderBrush="Black"
+        		BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="PasswordControlTemplate" TargetType="{x:Type PasswordBox}">
+            <Border Background="{TemplateBinding Background}" 
+        		x:Name="Bd" BorderBrush="Black"
+        		BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Storyboard x:Key="Storyboard1"/>
+        <Storyboard x:Key="Storyboard2"/>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+            <BeginStoryboard Storyboard="{StaticResource Storyboard2}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF4D4C4C" Offset="0"/>
+            <GradientStop Color="#FF131F53" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid x:Name="mainGrid" RenderTransformOrigin="0.461,0.493" Height="450" VerticalAlignment="Bottom" Width="400" Margin="0,0,0,-3" SnapsToDevicePixels="True" ClipToBounds="True" Background="#FF00B5C7" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="col1"/>
+            <ColumnDefinition x:Name="col2"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="loginregisterbtngrid" Grid.ColumnSpan="2" Margin="10,13,10,20" Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush/>
+            </Grid.Background>
+            <Button x:Name="loginentrybtn" Content="LOGIN" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Width="128" Height="55" FontSize="24" FontFamily="Rockwell Extra Bold" Click="loginentrybtn_Click" BorderBrush="Black"/>
+            <Button x:Name="registerentrybtn" Content="REGISTER" HorizontalAlignment="Left" Margin="214,105,0,0" VerticalAlignment="Top" Width="156" Height="55" FontSize="24" FontFamily="Rockwell Extra Bold" Click="registerentrybtn_Click" BorderBrush="Black"/>
+
+        </Grid>
+
+
+        <Grid x:Name="loginGrid" HorizontalAlignment="Left" Height="339" Margin="0,10,0,-7" VerticalAlignment="Top" Width="400" Grid.Row="1" Grid.ColumnSpan="2" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="86*"/>
+                <RowDefinition Height="27*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="lb1" Content="    Log In" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Width="180" Height="54" FontFamily="Cambria" FontSize="36" FontWeight="Bold" Foreground="White"/>
+            <Label x:Name="usrnameLabel" Content="Username :" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" FontFamily="Cambria" FontSize="18" Foreground="White"/>
+            <Label x:Name="passlb" Content="Password :" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Foreground="#FFFBF5F5" FontFamily="Cambria" FontSize="18"/>
+            <TextBox  Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="username" HorizontalAlignment="Left" Height="31" Margin="10,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" RenderTransformOrigin="1,0" SelectionBrush="#FF2A89E8" FontFamily="Cambria" FontWeight="Bold" FontSize="18" />
+            <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="password" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Width="180" Height="32" FontFamily="Cambria" FontWeight="Bold" />
+            <Button x:Name="LoginButton" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top" Width="180" Height="62" RenderTransformOrigin="0.44,1.186" Click="LoginButton_Click" Style="{DynamicResource MetroButton}" Grid.RowSpan="2" BorderBrush="Black">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Grid Height="53" Width="180">
+                    <Image Source="images/button_play_green.png" Stretch="Fill" Margin="0,0,132,10"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="53,0,0,0" TextWrapping="Wrap" Text=" Log In" VerticalAlignment="Top" RenderTransformOrigin="0.05,-0.844" Height="43" Width="127" FontFamily="Cambria" FontSize="36" FontWeight="Bold" Foreground="Black"/>
+                </Grid>
+            </Button>
+            <Button x:Name="fgp" Content="Forgot Password" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Width="114" FontFamily="Cambria" Foreground="#FFFBF7F7" BorderBrush="Transparent" Background="#00000000" FontSize="14" Click="fgp_Click"/>
+            <Button x:Name="backlogin" Content="Back" HorizontalAlignment="Left" Margin="315,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="85" Height="33" RenderTransformOrigin="-0.28,-0.121" Click="backlogin_Click" Foreground="Black" FontFamily="cambria" FontWeight="Bold" FontSize="14" BorderBrush="Black">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="fgptext" HorizontalAlignment="Left" Height="23" Margin="10,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" KeyDown="fgptext_KeyDown" GotFocus="fgptext_GotFocus" Text="Enter username" Foreground="#FF9B9494" />
+            <TextBlock x:Name="fgptextblock" HorizontalAlignment="Left" Margin="224,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="34" Foreground="#FFF5F2F2" FontFamily="Cambria" FontSize="15"/>
+            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="secAnswerText" HorizontalAlignment="Left" Height="23" Margin="224,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" FontFamily="Cambria" KeyDown="secAnswerText_KeyDown" Foreground="#FF9B9494" Text="Answer" GotFocus="secAnswerText_GotFocus" />
+            <TextBlock x:Name="securityPasswoedBlock" HorizontalAlignment="Left" Margin="224,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Height="26" FontFamily="Cambria" FontSize="15" Foreground="#FFF1E4E4"/>
+        </Grid>
+        <Label Content="WELCOME TO SAFELOCK" HorizontalAlignment="Left" Margin="2,44,-2,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="400" Height="62" FontFamily="Cambria" FontSize="35" Foreground="#FFFDF8F8" FontWeight="Bold"/>
+        <Grid x:Name="titleGrid" HorizontalAlignment="Left" Height="44" Margin="2,0,0,0" VerticalAlignment="Top" Width="398" Grid.ColumnSpan="2">
+            <Rectangle x:Name="titlebar" Fill="#FF272729" HorizontalAlignment="Left" Height="27" Stroke="#FF0C0B0B" VerticalAlignment="Top" Width="398" MouseDown="titlebar_MouseDown" Margin="0,-2,0,0" StrokeThickness="0"/>
+            <Button x:Name="close" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Width="39" Margin="359,-2,0,0" BorderThickness="0" Background="#FF2B2929" BorderBrush="#FF2B2929" Padding="0" Height="27" ClipToBounds="True" FontFamily="Cambria" Foreground="#FFA0ABAE" FontWeight="Bold" FontSize="22" Click="close_Click_1" Style="{DynamicResource MetroButton}"/>
+            <Button x:Name="min" Content="--" HorizontalAlignment="Left" Width="31" Margin="328,0,0,19" BorderThickness="0" Background="#FF2B2929" BorderBrush="#FF2B2929" Padding="0" FontFamily="Cambria" Foreground="#FFA0ABAE" FontWeight="Bold" FontSize="24" ClipToBounds="True" ClickMode="Hover" Style="{DynamicResource MetroButton}" MouseDown="min_MouseDown" />
+            <Image HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="25" Source="Green-Backup-icon.ico"/>
+        </Grid>
+
+        <Grid x:Name="registrationGrid" HorizontalAlignment="Left" Height="339" Margin="2,3,-2,0" VerticalAlignment="Top" Width="400" Grid.ColumnSpan="2" Grid.Row="1">
+            <Label Content="REGISTER" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="182" Height="39" FontSize="24" FontWeight="Bold" FontFamily="SimHei" Foreground="White"/>
+            <Label x:Name="regusername" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="105" Content="USERNAME" FontSize="14" RenderTransformOrigin="0.478,-0.513" Foreground="White"/>
+            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="regusernametext" HorizontalAlignment="Left" Height="27" Margin="10,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" RenderTransformOrigin="0.447,-0.397" LostFocus="regusernametext_LostFocus" GotFocus="regusernametext_GotFocus" />
+            <Label x:Name="regpassword" Content="PASSWORD" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.362,-0.338" Width="105" FontSize="14" Foreground="White"/>
+            <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="regpasswordtext" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Height="27" Width="168" LostFocus="regpasswordtext_LostFocus" GotFocus="regpasswordtext_GotFocus"/>
+
+            <Label x:Name="regconfpassword" Content="CONFIRM PASSWORD" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.441,-0.675" Width="149" FontSize="14" Foreground="White"/>
+            <PasswordBox Template="{StaticResource PasswordControlTemplate}" x:Name="regconpasswordtext" HorizontalAlignment="Left" Height="27" Margin="10,185,0,0" VerticalAlignment="Top" Width="168" LostFocus="regconpasswordtext_LostFocus_1" GotFocus="regconpasswordtext_GotFocus"/>
+
+            <Label Content="SECURITY QUESTION" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="168" FontSize="14" FontFamily="Cambria" Foreground="White"/>
+            <ComboBox x:Name="regsecuritylist" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top" Width="168" SelectedIndex="0">
+                <ListBoxItem Content="What is your favourite color?"/>
+                <ListBoxItem Content="What is your favourite place?"/>
+                <ListBoxItem Content="What is your favourite dish?"/>
+            </ComboBox>
+            <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="regsecuritytext" HorizontalAlignment="Left" Height="23" Margin="10,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" LostFocus="regsecuritytext_LostFocus" GotFocus="regsecuritytext_GotFocus"/>
+            <Button x:Name="registrationButton" Content="Register" HorizontalAlignment="Left" Margin="32,298,0,8" Width="106" FontSize="18" FontFamily="Cambria" Style="{DynamicResource MetroButton}" Background="#FF615656" Click="registrationButton_Click_1" Foreground="White"/>
+
+            <TextBlock x:Name="valusername" HorizontalAlignment="Left" Margin="183,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" Width="194" FontFamily="Cambria" Foreground="#FFBB0D0D"/>
+            <TextBlock x:Name="valpassword" HorizontalAlignment="Left" Margin="183,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="61" Width="194" FontFamily="Cambria" Foreground="#FFBB0D0D"/>
+            <TextBlock x:Name="valconfpassword" HorizontalAlignment="Left" Margin="183,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.41,-1.031" Height="53" Width="194" FontFamily="Cambria" Foreground="#FFBB0D0D"/>
+            <Button x:Name="backregister" Content="Back" HorizontalAlignment="Left" Margin="312,300,0,0" VerticalAlignment="Top" Width="78" Height="33" Click="backregister_Click" Foreground="Black" FontFamily="Cambria" FontWeight="Bold" FontSize="14" BorderBrush="Black">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFEFEFE" Offset="0"/>
+                        <GradientStop Color="#FFC8C8CB" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="regrefreshbtn" Content="Refresh" HorizontalAlignment="Left" Margin="227,300,0,0" VerticalAlignment="Top" Width="75" Height="33" Click="regrefreshbtn_Click" Foreground="Black" BorderBrush="Black" FontFamily="Cambria" FontWeight="Bold" FontSize="14">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFC8C8CB" Offset="1"/>
+                        <GradientStop Color="#FFFEFEFE"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <TextBlock x:Name="valSecurity" HorizontalAlignment="Left" Margin="183,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="194" FontFamily="Cambria" Foreground="#FFBB0D0D"/>
+        </Grid>
+
+
+    </Grid>
+</Window>
